@@ -1,0 +1,47 @@
+[
+  {
+    "badge_id": 1,
+    "badge_name": "Profile Complete",
+    "badge_description": "Complete your profile 100%",
+    "badge_icon": "fa-solid fa-user-check",
+    "badge_category": "Profile",
+    "points_value": 50,
+    "rule_criteria": "{\"profile_completion\": 100}"
+  },
+  {
+    "badge_id": 2,
+    "badge_name": "Active Investor",
+    "badge_description": "View more than 50 startup pitches",
+    "badge_icon": "fa-solid fa-fire",
+    "badge_category": "Engagement",
+    "points_value": 100,
+    "rule_criteria": "{\"videos_viewed\": 50, \"role\": \"Investor\"}"
+  },
+  {
+    "badge_id": 3,
+    "badge_name": "Active Startup",
+    "badge_description": "Upload your first pitch video",
+    "badge_icon": "fa-solid fa-video",
+    "badge_category": "Content",
+    "points_value": 75,
+    "rule_criteria": "{\"videos_uploaded\": 1, \"role\": \"Startup\"}"
+  },
+  {
+    "badge_id": 4,
+    "badge_name": "Networker",
+    "badge_description": "Save 10 or more matches",
+    "badge_icon": "fa-solid fa-handshake",
+    "badge_category": "Network",
+    "points_value": 80,
+    "rule_criteria": "{\"matches_saved\": 10}"
+  },
+  {
+    "badge_id": 5,
+    "badge_name": "Communicator",
+    "badge_description": "Send 50 messages",
+    "badge_icon": "fa-solid fa-comments",
+    "badge_category": "Engagement",
+    "points_value": 60,
+    "rule_criteria": "{\"messages_sent\": 50}"
+  }
+]

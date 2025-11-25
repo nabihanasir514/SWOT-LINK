@@ -1,0 +1,52 @@
+[
+  {
+    "investor_profile_id": 1,
+    "user_id": 2,
+    "investor_name": null,
+    "investor_type": null,
+    "investment_thesis": null,
+    "budget_min": null,
+    "budget_max": null,
+    "currency": "USD",
+    "website": null,
+    "company": null,
+    "location": null,
+    "years_experience": null,
+    "preferred_industries": null,
+    "preferred_stages": null,
+    "created_at": "2025-11-10T16:19:14.091Z"
+  },
+  {
+    "investor_profile_id": 2,
+    "user_id": 4,
+    "investor_name": "fast",
+    "investor_type": "Angel",
+    "investment_thesis": "nope",
+    "budget_min": 7000,
+    "budget_max": 9000000000,
+    "currency": "USD",
+    "website": null,
+    "company": null,
+    "location": null,
+    "years_experience": 25,
+    "preferred_industries": "[4,7,2]",
+    "preferred_stages": "[1,2,3]",
+    "created_at": "2025-11-10T16:20:54.913Z",
+    "updated_at": "2025-11-15T11:09:46.737Z"
+  },
+  {
+    "investor_profile_id": 3,
+    "user_id": 7,
+    "investor_type": null,
+    "investment_range_min": null,
+    "investment_range_max": null,
+    "preferred_industries": null,
+    "preferred_stages": null,
+    "location": null,
+    "portfolio_description": null,
+    "investment_criteria": null,
+    "previous_investments": null,
+    "linkedin_url": null,
+    "created_at": "2025-11-15T16:29:09.215Z"
+  }
+]

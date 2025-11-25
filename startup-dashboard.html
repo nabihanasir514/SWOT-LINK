@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Startup Dashboard - SWOT Link</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><img src="image2.png" alt="SWOT Link Logo" class="logo-img" /> SWOT Link</div>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="#" id="dashboardLink">Dashboard</a></li>
+        <li><a href="#" id="profileLink">Profile</a></li>
+        <li><a href="#" id="matchesLink">Matches</a></li>
+        <li><a href="#" id="logoutLink">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="dashboard-section" data-animate>
+      <div class="dashboard-container">
+        <div class="dashboard-header" data-animate>
+          <h1>Welcome, <span id="userName">Loading...</span></h1>
+          <p>Manage your startup profile and connect with investors</p>
+        </div>
+
+        <div class="dashboard-stats" data-animate>
+          <div class="stat-card" data-animate>
+            <i class="fa-solid fa-eye"></i>
+            <h3 id="profileViews">0</h3>
+            <p>Profile Views</p>
+          </div>
+          <div class="stat-card" data-animate>
+            <i class="fa-solid fa-handshake"></i>
+            <h3 id="investorMatches">0</h3>
+            <p>Investor Matches</p>
+          </div>
+          <div class="stat-card" data-animate>
+            <i class="fa-solid fa-message"></i>
+            <h3 id="messages">0</h3>
+            <p>Messages</p>
+          </div>
+        </div>
+
+        <div class="dashboard-content" id="dashboardView" data-animate>
+          <div class="profile-status-card" data-animate>
+            <div id="noProfile" style="display: none;">
+              <i class="fa-solid fa-building"></i>
+              <h2>Complete Your Startup Profile</h2>
+              <p>Create your profile to start connecting with investors</p>
+              <button class="btn-primary" onclick="showProfile()">Create Profile</button>
+            </div>
+            <div id="hasProfile" style="display: none;">
+              <h2><span id="companyName"></span></h2>
+              <p class="industry-tag"><span id="industryName"></span> • <span id="stageName"></span></p>
+              <div class="profile-details">
+                <h3>Elevator Pitch</h3>
+                <p id="elevatorPitch"></p>
+                
+                <h3>Funding Goal</h3>
+                <p id="fundingGoal"></p>
+              </div>
+              <button class="btn-secondary" onclick="showProfile()">Edit Profile</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-form-container" id="profileView" style="display: none;" data-animate>
+          <h2>Your Startup Profile</h2>
+          <form id="startupProfileForm" class="profile-form">
+            <div class="form-group">
+              <label for="companyName">Company Name *</label>
+              <input type="text" id="companyNameInput" name="companyName" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="industry">Industry *</label>
+                <select id="industry" name="industryId" required>
+                  <option value="">Loading...</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="fundingStage">Funding Stage</label>
+                <select id="fundingStage" name="fundingStageId">
+                  <option value="">Loading...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="elevatorPitch">Elevator Pitch *</label>
+              <textarea id="elevatorPitchInput" name="elevatorPitch" rows="4" required 
+                placeholder="Describe your startup in 2-3 sentences..."></textarea>
+            </div>
+
+            <div class="swot-section">
+              <h3>SWOT Analysis</h3>
+              <p class="swot-subtitle">Analyze your startup's strategic position</p>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="strengths"><i class="fa-solid fa-thumbs-up"></i> Strengths</label>
+                  <textarea id="strengths" name="strengths" rows="3" 
+                    placeholder="What are your competitive advantages?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="weaknesses"><i class="fa-solid fa-thumbs-down"></i> Weaknesses</label>
+                  <textarea id="weaknesses" name="weaknesses" rows="3"
+                    placeholder="What areas need improvement?"></textarea>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="opportunities"><i class="fa-solid fa-lightbulb"></i> Opportunities</label>
+                  <textarea id="opportunities" name="opportunities" rows="3"
+                    placeholder="What market opportunities exist?"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="threats"><i class="fa-solid fa-triangle-exclamation"></i> Threats</label>
+                  <textarea id="threats" name="threats" rows="3"
+                    placeholder="What external challenges do you face?"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="funding-section">
+              <h3>Funding Information</h3>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fundingGoal">Funding Goal (USD)</label>
+                  <input type="number" id="fundingGoalInput" name="fundingGoal" min="0" step="1000"
+                    placeholder="e.g., 500000" />
+                </div>
+
+                <div class="form-group">
+                  <label for="foundedYear">Founded Year</label>
+                  <input type="number" id="foundedYear" name="foundedYear" min="1900" max="2025" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="teamSize">Team Size</label>
+                  <input type="number" id="teamSize" name="teamSize" min="1" />
+                </div>
+
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input type="text" id="location" name="location" placeholder="City, Country" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="website">Website</label>
+                <input type="url" id="website" name="website" placeholder="https://yourcompany.com" />
+              </div>
+            </div>
+
+            <div id="profile-error" class="error-message" style="display: none;"></div>
+            <div id="profile-success" class="success-message" style="display: none;"></div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-secondary" onclick="showDashboard()">Cancel</button>
+              <button type="submit" class="btn-primary">Save Profile</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global interaction & animations -->
+  <script src="script.js"></script>
+  <!-- Dashboard logic -->
+  <script src="dashboard.js"></script>
+</body>
+</html>

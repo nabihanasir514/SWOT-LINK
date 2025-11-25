@@ -1,0 +1,52 @@
+[
+  {
+    "category_id": 1,
+    "category_name": "General Discussion",
+    "category_slug": "general",
+    "description": "General conversations about startups and investing",
+    "icon": "fa-solid fa-comments",
+    "display_order": 1,
+    "is_active": true,
+    "post_count": 0
+  },
+  {
+    "category_id": 2,
+    "category_name": "Fundraising Tips",
+    "category_slug": "fundraising",
+    "description": "Share and discuss fundraising strategies",
+    "icon": "fa-solid fa-money-bill-trend-up",
+    "display_order": 2,
+    "is_active": true,
+    "post_count": 0
+  },
+  {
+    "category_id": 3,
+    "category_name": "Investor Insights",
+    "category_slug": "investor-insights",
+    "description": "Investors share their perspectives",
+    "icon": "fa-solid fa-lightbulb",
+    "display_order": 3,
+    "is_active": true,
+    "post_count": 0
+  },
+  {
+    "category_id": 4,
+    "category_name": "Success Stories",
+    "category_slug": "success-stories",
+    "description": "Share your wins and milestones",
+    "icon": "fa-solid fa-trophy",
+    "display_order": 4,
+    "is_active": true,
+    "post_count": 0
+  },
+  {
+    "category_id": 5,
+    "category_name": "Platform Feedback",
+    "category_slug": "feedback",
+    "description": "Suggestions and bug reports for SWOT Link",
+    "icon": "fa-solid fa-bug",
+    "display_order": 5,
+    "is_active": true,
+    "post_count": 0
+  }
+]

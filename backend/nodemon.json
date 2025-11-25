@@ -1,0 +1,16 @@
+{
+  "watch": ["./"],
+  "ext": "js,json",
+  "ignore": [
+    "../*.html",
+    "../*.css",
+    "../*.js",
+    "../uploads/**",
+    "../**/*.html",
+    "../**/*.css",
+    "../auth.js",
+    "../dashboard.js",
+    "../script.js"
+  ],
+  "exec": "node server.js"
+}

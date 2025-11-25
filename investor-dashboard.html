@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investor Dashboard - SWOT </title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><img src="image2.png" alt="SWOT Link Logo" class="logo-img" /> SWOT Link</div>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="#" id="dashboardLink">Dashboard</a></li>
+        <li><a href="#" id="profileLink">Profile</a></li>
+        <li><a href="#" id="matchesLink">Matches</a></li>
+        <li><a href="#" id="logoutLink">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="dashboard-section" data-animate>
+      <div class="dashboard-container">
+        <div class="dashboard-header" data-animate>
+          <h1>Welcome, <span id="userName">Loading...</span></h1>
+          <p>Discover and invest in promising startups</p>
+        </div>
+
+        <div class="dashboard-stats" data-animate>
+          <div class="stat-card" data-animate>
+            <i class="fa-solid fa-building"></i>
+            <h3 id="startupMatches">0</h3>
+            <p>Startup Matches</p>
+          </div>
+          <div class="stat-card" data-animate>
+            <i class="fa-solid fa-bookmark"></i>
+            <h3 id="savedStartups">0</h3>
+            <p>Saved Startups</p>
+          </div>
+          <div class="stat-card" data-animate>
+            <i class="fa-solid fa-message"></i>
+            <h3 id="messages">0</h3>
+            <p>Messages</p>
+          </div>
+        </div>
+
+        <div class="dashboard-content" id="dashboardView" data-animate>
+          <div class="profile-status-card" data-animate>
+            <div id="noProfile" style="display: none;">
+              <i class="fa-solid fa-user-tie"></i>
+              <h2>Complete Your Investor Profile</h2>
+              <p>Create your profile to start discovering startups</p>
+              <button class="btn-primary" onclick="showProfile()">Create Profile</button>
+            </div>
+            <div id="hasProfile" style="display: none;">
+              <h2><span id="investorNameDisplay"></span></h2>
+              <p class="investor-type-tag"><span id="investorTypeDisplay"></span></p>
+              <div class="profile-details">
+                <h3>Investment Thesis</h3>
+                <p id="investmentThesisDisplay"></p>
+                
+                <h3>Budget Range</h3>
+                <p id="budgetRange"></p>
+
+                <h3>Preferred Industries</h3>
+                <div id="industriesList" class="tags-list"></div>
+              </div>
+              <button class="btn-secondary" onclick="showProfile()">Edit Profile</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-form-container" id="profileView" style="display: none;" data-animate>
+          <h2>Your Investor Profile</h2>
+          <form id="investorProfileForm" class="profile-form">
+            <div class="form-group">
+              <label for="investorName">Name / Company *</label>
+              <input type="text" id="investorNameInput" name="investorName" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="investorType">Investor Type *</label>
+                <select id="investorType" name="investorType" required>
+                  <option value="">Select type</option>
+                  <option value="Angel">Angel Investor</option>
+                  <option value="VC">Venture Capital</option>
+                  <option value="Corporate">Corporate VC</option>
+                  <option value="Private Equity">Private Equity</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="yearsExperience">Years of Experience</label>
+                <input type="number" id="yearsExperience" name="yearsExperience" min="0" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="investmentThesis">Investment Thesis *</label>
+              <textarea id="investmentThesisInput" name="investmentThesis" rows="4" required 
+                placeholder="Describe your investment philosophy and what you look for in startups..."></textarea>
+            </div>
+
+            <div class="budget-section">
+              <h3>Investment Budget Range</h3>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="budgetMin">Minimum Investment (USD)</label>
+                  <input type="number" id="budgetMin" name="budgetMin" min="0" step="1000"
+                    placeholder="e.g., 50000" />
+                </div>
+
+                <div class="form-group">
+                  <label for="budgetMax">Maximum Investment (USD)</label>
+                  <input type="number" id="budgetMax" name="budgetMax" min="0" step="1000"
+                    placeholder="e.g., 500000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="preferences-section">
+              <h3>Industry Preferences</h3>
+              <p class="form-subtitle">Select industries you're interested in investing in</p>
+              <div id="industriesCheckboxes" class="checkbox-grid">
+                <!-- Will be populated dynamically -->
+              </div>
+            </div>
+
+            <div class="preferences-section">
+              <h3>Funding Stage Preferences</h3>
+              <p class="form-subtitle">Select stages you typically invest in</p>
+              <div id="stagesCheckboxes" class="checkbox-grid">
+                <!-- Will be populated dynamically -->
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="company">Company / Firm</label>
+                <input type="text" id="company" name="company" />
+              </div>
+
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="City, Country" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="website">Website</label>
+              <input type="url" id="website" name="website" placeholder="https://yourfirm.com" />
+            </div>
+
+            <div id="profile-error" class="error-message" style="display: none;"></div>
+            <div id="profile-success" class="success-message" style="display: none;"></div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-secondary" onclick="showDashboard()">Cancel</button>
+              <button type="submit" class="btn-primary">Save Profile</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global interaction & animations -->
+  <script src="script.js"></script>
+  <!-- Dashboard logic -->
+  <script src="dashboard.js"></script>
+</body>
+</html>

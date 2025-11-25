@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pitch Room - SWOT Link</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Video.js CSS -->
+  <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="pitch-room-page">
+    <!-- Navigation -->
+    <div class="navbar">
+      <div class="logo">
+        <i class="fa-solid fa-link"></i>
+        <span>SWOT </span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" id="dashboardLink">Dashboard</a></li>
+        <li><a href="investor-discovery.html" id="discoverLink">Discover</a></li>
+        <li><a href="pitch-room.html" class="active">Pitch Room</a></li>
+        <li><a href="messages.html">Messages</a></li>
+        <li><a href="deal-room.html">Deal Room</a></li>
+        <li><a href="#" id="logoutLink">Logout</a></li>
+      </ul>
+    </div>
+
+    <div class="pitch-room-container">
+      <!-- Header -->
+      <div class="pitch-room-header">
+        <h1><i class="fa-solid fa-video"></i> Pitch Room</h1>
+        <p>Watch startup pitch videos and engage with founders</p>
+        <button class="btn-primary" id="uploadBtn" style="display: none;">
+          <i class="fa-solid fa-upload"></i> Upload Pitch Video
+        </button>
+      </div>
+
+      <!-- Upload Modal -->
+      <div id="uploadModal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Upload Pitch Video</h2>
+            <button class="close-modal" onclick="closeUploadModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="uploadForm" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="videoTitle">Video Title*</label>
+                <input type="text" id="videoTitle" placeholder="Enter pitch video title" required>
+              </div>
+
+              <div class="form-group">
+                <label for="videoDescription">Description</label>
+                <textarea id="videoDescription" rows="4" placeholder="Describe your pitch..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="videoFile">Video File* (Max 500MB)</label>
+                <div class="file-upload-area" id="videoUploadArea">
+                  <i class="fa-solid fa-cloud-upload-alt"></i>
+                  <p>Click to select or drag and drop video file</p>
+                  <p class="file-info">Supported: MP4, AVI, MOV, WMV, FLV, WEBM, MKV</p>
+                  <input type="file" id="videoFile" accept="video/*" required>
+                </div>
+                <div id="uploadProgress" style="display: none;">
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                  </div>
+                  <p id="progressText">Uploading...</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="isPublic" checked>
+                  <span>Make this video public (visible to all investors)</span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="closeUploadModal()">Cancel</button>
+                <button type="submit" class="btn-primary">
+                  <i class="fa-solid fa-upload"></i> Upload Video
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Videos Section (Startups Only) -->
+      <div id="myVideosSection" style="display: none;">
+        <div class="section-card">
+          <div class="section-header">
+            <h2><i class="fa-solid fa-folder-open"></i> My Pitch Videos</h2>
+            <button class="btn-secondary" onclick="loadMyVideos()">
+              <i class="fa-solid fa-sync"></i> Refresh
+            </button>
+          </div>
+          <div id="myVideosList" class="videos-grid"></div>
+        </div>
+      </div>
+
+      <!-- Filters Section -->
+      <div class="filters-section">
+        <div class="filters-card">
+          <h3><i class="fa-solid fa-filter"></i> Filters</h3>
+          
+          <div class="filter-group">
+            <label>Search</label>
+            <input type="text" id="searchQuery" placeholder="Search videos...">
+          </div>
+
+          <div class="filter-group">
+            <label>Industry</label>
+            <select id="filterIndustry">
+              <option value="">All Industries</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Funding Stage</label>
+            <select id="filterStage">
+              <option value="">All Stages</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Sort By</label>
+            <select id="sortBy">
+              <option value="recent">Most Recent</option>
+              <option value="views">Most Viewed</option>
+            </select>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn-apply" onclick="applyFilters()">
+              <i class="fa-solid fa-check"></i> Apply
+            </button>
+            <button class="btn-reset" onclick="resetFilters()">
+              <i class="fa-solid fa-times"></i> Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Videos Grid -->
+      <div class="videos-section">
+        <div class="section-header">
+          <h2><i class="fa-solid fa-play-circle"></i> Pitch Videos</h2>
+          <p>Browse startup pitches from innovative founders</p>
+        </div>
+
+        <div id="loadingVideos" class="loading-results">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          <h3>Loading videos...</h3>
+          <p>Please wait while we fetch pitch videos</p>
+        </div>
+
+        <div id="noVideos" class="no-results" style="display: none;">
+          <i class="fa-solid fa-video-slash"></i>
+          <h3>No Videos Found</h3>
+          <p>Try adjusting your filters or check back later</p>
+        </div>
+
+        <div id="videosGrid" class="videos-grid"></div>
+      </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="videoModal" class="modal">
+      <div class="modal-content video-modal">
+        <div class="modal-header">
+          <h2 id="videoModalTitle">Pitch Video</h2>
+          <button class="close-modal" onclick="closeVideoModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="video-container">
+            <video id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto">
+              <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+              </p>
+            </video>
+          </div>
+
+          <div class="video-info">
+            <div class="video-meta">
+              <span><i class="fa-solid fa-building"></i> <span id="videoCompany"></span></span>
+              <span><i class="fa-solid fa-chart-line"></i> <span id="videoStage"></span></span>
+              <span><i class="fa-solid fa-eye"></i> <span id="videoViews"></span> views</span>
+              <span><i class="fa-solid fa-calendar"></i> <span id="videoDate"></span></span>
+            </div>
+
+            <div class="video-description">
+              <h3>Description</h3>
+              <p id="videoDescription"></p>
+            </div>
+
+            <div class="video-startup-info">
+              <h3>About the Startup</h3>
+              <p id="videoElevatorPitch"></p>
+              <div class="startup-details">
+                <span><i class="fa-solid fa-building"></i> <span id="videoIndustry"></span></span>
+                <span><i class="fa-solid fa-location-dot"></i> <span id="videoLocation"></span></span>
+                <a href="#" id="videoWebsite" target="_blank" style="display: none;">
+                  <i class="fa-solid fa-globe"></i> Visit Website
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments Section -->
+          <div class="comments-section">
+            <h3><i class="fa-solid fa-comments"></i> Comments (<span id="commentsCount">0</span>)</h3>
+            
+            <div class="comment-form">
+              <textarea id="commentText" rows="3" placeholder="Ask a question or leave a comment..."></textarea>
+              <button class="btn-primary" onclick="postComment()">
+                <i class="fa-solid fa-paper-plane"></i> Post Comment
+              </button>
+            </div>
+
+            <div id="commentsList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video.js -->
+  <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+  <script src="pitch-room.js"></script>
+</body>
+</html>

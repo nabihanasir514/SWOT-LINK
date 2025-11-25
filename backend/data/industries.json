@@ -1,0 +1,42 @@
+[
+  {
+    "industry_id": 1,
+    "industry_name": "Technology"
+  },
+  {
+    "industry_id": 2,
+    "industry_name": "Healthcare"
+  },
+  {
+    "industry_id": 3,
+    "industry_name": "Finance"
+  },
+  {
+    "industry_id": 4,
+    "industry_name": "E-commerce"
+  },
+  {
+    "industry_id": 5,
+    "industry_name": "Education"
+  },
+  {
+    "industry_id": 6,
+    "industry_name": "Real Estate"
+  },
+  {
+    "industry_id": 7,
+    "industry_name": "Energy"
+  },
+  {
+    "industry_id": 8,
+    "industry_name": "Transportation"
+  },
+  {
+    "industry_id": 9,
+    "industry_name": "Food & Beverage"
+  },
+  {
+    "industry_id": 10,
+    "industry_name": "Entertainment"
+  }
+]

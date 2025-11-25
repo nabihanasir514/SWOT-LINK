@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Startups - SWOT Link</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><img src="image2.png" alt="SWOT Link Logo" class="logo-img" /> </div>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="investor-dashboard.html">Dashboard</a></li>
+        <li><a href="investor-discovery.html" class="active">Discover</a></li>
+        <li><a href="messages.html">Messages</a></li>
+        <li><a href="#" id="logoutLink">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="discovery-section" data-animate>
+      <div class="discovery-container">
+        <!-- Header -->
+        <div class="discovery-header" data-animate>
+          <h1><i class="fa-solid fa-search"></i> Discover Startups</h1>
+          <p>Find startups that match your investment criteria</p>
+        </div>
+
+        <!-- Filters -->
+  <div class="filters-card" data-animate>
+          <h3><i class="fa-solid fa-filter"></i> Filters</h3>
+          
+          <!-- Search Bar -->
+          <div class="filter-group" style="grid-column: 1 / -1; margin-bottom: 1rem;">
+            <label for="searchInput">Search</label>
+            <input type="text" id="searchInput" placeholder="Search by company name, pitch, industry, location..." style="width: 100%;" />
+          </div>
+          
+          <div class="filters-grid">
+            <div class="filter-group">
+              <label for="filterIndustry">Industry</label>
+              <select id="filterIndustry">
+                <option value="">All Industries</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filterStage">Funding Stage</label>
+              <select id="filterStage">
+                <option value="">All Stages</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filterMinFunding">Min Funding Goal</label>
+              <input type="number" id="filterMinFunding" placeholder="e.g., 100000" step="10000" />
+            </div>
+
+            <div class="filter-group">
+              <label for="filterMaxFunding">Max Funding Goal</label>
+              <input type="number" id="filterMaxFunding" placeholder="e.g., 1000000" step="10000" />
+            </div>
+
+            <div class="filter-group">
+              <label for="filterLocation">Location</label>
+              <input type="text" id="filterLocation" placeholder="e.g., San Francisco" />
+            </div>
+
+            <div class="filter-group">
+              <label for="filterMinTeam">Min Team Size</label>
+              <input type="number" id="filterMinTeam" placeholder="e.g., 5" min="1" />
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn-secondary" onclick="resetFilters()">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+            <button class="btn-primary" onclick="applyFilters()">
+              <i class="fa-solid fa-search"></i> Search
+            </button>
+          </div>
+
+          <div class="filter-toggles">
+            <label>
+              <input type="checkbox" id="ignoreIndustry" />
+              Show all industries (ignore my preferences)
+            </label>
+            <label>
+              <input type="checkbox" id="ignoreStage" />
+              Show all stages (ignore my preferences)
+            </label>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results-section" data-animate>
+          <div class="results-header" data-animate>
+            <h3>Results <span id="resultsCount">0</span></h3>
+            <div class="sort-options">
+              <label for="sortBy">Sort by:</label>
+              <select id="sortBy" onchange="sortResults()">
+                <option value="match">Best Match</option>
+                <option value="funding">Funding Goal</option>
+                <option value="team">Team Size</option>
+                <option value="recent">Most Recent</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="loadingResults" class="loading-message" style="display: none;">
+            <i class="fa-solid fa-spinner fa-spin"></i> Loading startups...
+          </div>
+
+          <div id="noResults" class="no-results" style="display: none;">
+            <i class="fa-solid fa-inbox"></i>
+            <h3>No matching startups found</h3>
+            <p>Try adjusting your filters or preferences</p>
+          </div>
+
+          <div id="resultsGrid" class="results-grid" data-animate>
+            <!-- Results will be populated here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Startup Detail Modal -->
+    <div id="startupModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="startupDetails">
+          <!-- Startup details will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="discovery.js"></script>
+</body>
+</html>

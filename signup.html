@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - SWOT Link</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><img src="image2.png" alt="SWOT Link Logo" class="logo-img" /></div>
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Signup Section -->
+    <section class="auth-section">
+      <div class="auth-container">
+        <div class="auth-box">
+          <h1>Create Your Account</h1>
+          <p class="auth-subtitle">Join SWOT LINK and connect with opportunities</p>
+          
+          <form id="signupForm" class="auth-form">
+            <div class="form-group">
+              <label for="role">I am a</label>
+              <select id="role" name="role" required>
+                <option value="">Select your role</option>
+                <option value="Startup">Startup seeking funding</option>
+                <option value="Investor">Investor looking to invest</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number (Optional)</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" required minlength="8" />
+              <small>Must be at least 8 characters</small>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required />
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label>
+                <input type="checkbox" id="terms" required />
+                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+              </label>
+            </div>
+
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
+
+            <button type="submit" class="btn-primary btn-full">Create Account</button>
+          </form>
+
+          <div class="auth-footer">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+</body>
+</html>

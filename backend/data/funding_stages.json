@@ -1,0 +1,26 @@
+[
+  {
+    "stage_id": 1,
+    "stage_name": "Pre-Seed"
+  },
+  {
+    "stage_id": 2,
+    "stage_name": "Seed"
+  },
+  {
+    "stage_id": 3,
+    "stage_name": "Series A"
+  },
+  {
+    "stage_id": 4,
+    "stage_name": "Series B"
+  },
+  {
+    "stage_id": 5,
+    "stage_name": "Series C+"
+  },
+  {
+    "stage_id": 6,
+    "stage_name": "Growth"
+  }
+]
